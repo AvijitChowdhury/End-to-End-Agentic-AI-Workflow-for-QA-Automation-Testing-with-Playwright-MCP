@@ -1,0 +1,49 @@
+# -------------------------------
+# Python
+# -------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environment
+venv/
+.venv/
+
+
+# Pytest
+.pytest_cache/
+.cache/
+coverage.xml
+htmlcov/
+
+
+
+
+# Logs
+logs/*.log
+*.log
+
+# VS Code
+.history/
+
+# Node
+node_modules/
+
+# MCP
+.playwright-mcp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+
+# Temporary
+*.tmp
+*.bak
+
+# Build
+dist/
+build/

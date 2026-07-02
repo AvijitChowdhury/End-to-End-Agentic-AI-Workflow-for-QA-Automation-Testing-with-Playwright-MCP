@@ -1,0 +1,85 @@
+name: Python Playwright CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t mcp-playwright-test .
+
+      - name: Run Playwright tests in Docker
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          TEST_ENV: github
+          SAUCEDEMO_USER: ${{ secrets.SAUCEDEMO_USER }}
+          SAUCEDEMO_PASSWORD: ${{ secrets.SAUCEDEMO_PASSWORD }}
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/app \
+            -w /app \
+            -e BASE_URL \
+            -e TEST_ENV \
+            -e SAUCEDEMO_USER \
+            -e SAUCEDEMO_PASSWORD \
+            mcp-playwright-test pytest -q \
+              --browser=${{ matrix.browser }} \
+              --workers auto \
+              --dist loadfile \
+              --html=reports/report-${{ matrix.browser }}.html \
+              --self-contained-html \
+              --junitxml=reports/junit-${{ matrix.browser }}.xml
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-report-${{ matrix.browser }}
+          path: reports/report-${{ matrix.browser }}.html
+
+      - name: Upload JUnit XML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-${{ matrix.browser }}
+          path: reports/junit-${{ matrix.browser }}.xml
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-screenshots
+          path: test-results/screenshots/**
+
+      - name: Upload Playwright traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-traces-${{ matrix.browser }}
+          path: test-results/traces/*.zip
+
+      - name: Upload failed video artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-videos
+          path: test-results/videos/**

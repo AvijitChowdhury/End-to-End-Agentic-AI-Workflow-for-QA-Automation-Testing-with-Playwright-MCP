@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "mcp-playwright-project"
+version = "1.0.0"
+description = "Playwright Python automation framework for SauceDemo checkout flow"
+authors = ["Automation Team <qa@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+playwright = "^1.40.0"
+pytest = "^8.0.0"
+pytest-playwright = "^0.5.0"
+pytest-rerunfailures = "^10.3.0"
+pytest-xdist = "^3.1.1"
+allure-pytest = "^2.10.1"
+
+[tool.poetry.dev-dependencies]
+
+[tool.pytest.ini_options]
+addopts = "-q --maxfail=1 --reruns 1 --reruns-delay 5 --browser chromium --browser firefox --browser webkit"
+python_files = ["test_*.py"]
+markers = ["smoke", "regression", "critical"]

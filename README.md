@@ -23,6 +23,14 @@ Instead of manually writing automation scripts, the framework leverages **GitHub
 - Self-Heal Test Failures
 - Generate Professional QA Reports
 
+
+<p align="center">
+  <img src="assets/architecture.png" alt="End-to-End Agentic AI QA Workflow" width="100%">
+</p>
+
+📖 **Detailed Design Documentation:**  
+➡️ **[docs/architecture.md](docs/architecture.md)**
+
 The project follows modern QA engineering practices including the **Page Object Model (POM)**, reusable fixtures, environment-driven configuration, CI/CD readiness, and AI-assisted development.
 
 ---
@@ -521,6 +529,46 @@ test-results/
 - Videos (optional)
 
 ---
+
+## 📊 Allure Report
+
+The framework generates an interactive **Allure Report** after every test execution, providing:
+
+- 📈 Test execution summary
+- ✅ Passed / Failed / Skipped tests
+- 📊 Trends & history
+- 📂 Test suites
+- ⏱️ Execution timeline
+- 📸 Failure screenshots
+- 🎥 Playwright traces
+- 📝 Detailed stack traces
+
+### Allure Report 1
+
+<p align="center">
+  <img src="assets/allure1.png" width="100%" alt="Allure Report">
+</p>
+
+### Allure Report 2
+
+<p align="center">
+  <img src="assets/allure2.png" width="100%" alt="Allure Report">
+</p>
+### Allure Report 3
+
+<p align="center">
+  <img src="assets/allure3.png" width="100%" alt="Allure Report">
+</p>
+### Allure Report 4
+
+<p align="center">
+  <img src="assets/allure4.png" width="100%" alt="Allure Report">
+</p>
+### Allure Report 5
+
+<p align="center">
+  <img src="assets/allure5.png" width="100%" alt="Allure Report">
+</p>
 
 # 📈 Test Coverage
 

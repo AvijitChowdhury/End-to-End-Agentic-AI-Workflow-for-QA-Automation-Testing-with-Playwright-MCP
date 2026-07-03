@@ -186,48 +186,40 @@ Produces professional QA documentation:
 
 ---
 
+
 # 📁 Project Structure
 
 ```text
-AI-Playwright-MCP/
-
-│
+.
 ├── .github/
-│   ├── agents/
 │   └── workflows/
-│
-├── .vscode/
-│   └── mcp.json
-│
+├── agents/
+├── assets/
+│   └── architecture.png
+├── docs/
+│   └── architecture.md
 ├── fixtures/
-│
-├── pages/
-│
-├── plans/
-│
-├── prompts/
-│
-├── reports/
-│
-├── screenshots/
-│
+├── logs/
 ├── observations/
-│
-├── test-results/
-│
+├── pages/
+├── plans/
+├── prompts/
+├── reports/
+│   ├── allure-report/
+│   ├── report.html
+│   ├── results.xml
+│   └── SCRUM-101-final-report.md
+├── screenshots/
 ├── tests/
-│
+├── traces/
 ├── user-stories/
-│
 ├── utils/
-│
 ├── conftest.py
-├── README.md
+├── Dockerfile
+├── pyproject.toml
 ├── requirements.txt
-└── main.py
+└── README.md
 ```
-
----
 
 # ⚙️ Technology Stack
 
@@ -529,6 +521,20 @@ test-results/
 - Videos (optional)
 
 ---
+# 📊 Test Reports
+
+The framework automatically generates multiple report formats after every execution.
+
+| Report | Description |
+|---------|-------------|
+| HTML Report | Interactive Playwright execution report |
+| Allure Report | Interactive dashboard with trends, timeline, suites and execution history |
+| JUnit XML | CI/CD compatible report |
+| Screenshots | Automatically captured on failures |
+| Playwright Traces | Browser replay for debugging |
+| Final QA Report | Markdown summary of execution |
+
+---
 
 ## 📊 Allure Report
 
@@ -615,53 +621,54 @@ The project supports GitHub Actions for:
 
 # 📌 Future Improvements
 
-- Allure Reporting
-- Data-Driven Testing
+
 - API Testing Integration
 - Accessibility Testing
 - Performance Testing
 - Visual Regression Testing
 - BrowserStack Integration
 - Sauce Labs Integration
-- Docker Support
 - AI Defect Classification
 
 ---
 
-# 📷 Demo Workflow
+# 🔄 End-to-End Testing Workflow
 
-```
-Scrum User Story
-        │
-        ▼
-Planner Agent
-        │
-        ▼
-Test Plan
-        │
-        ▼
-Browser Agent (MCP)
-        │
-        ▼
-Exploratory Testing
-        │
-        ▼
-Test Generator
-        │
-        ▼
-Python Playwright Tests
-        │
-        ▼
-Pytest Execution
-        │
-        ▼
-Healer Agent
-        │
-        ▼
-Reporter Agent
-        │
-        ▼
-Final QA Report
+```text
+SCRUM User Story (.md)
+          │
+          ▼
+ AI Test Planning
+          │
+          ▼
+ Exploratory Testing
+          │
+          ▼
+ Playwright MCP Server
+          │
+          ▼
+ GitHub Copilot Agent
+          │
+          ▼
+ Python Playwright Tests
+          │
+          ▼
+ Pytest Execution
+          │
+ ┌────────┼──────────┐
+ ▼        ▼          ▼
+HTML    Allure    JUnit XML
+Report   Report     Report
+          │
+          ▼
+ Failure Screenshots
+ Playwright Traces
+          │
+          ▼
+ AI Debugging
+          │
+          ▼
+ Fixed Test Suite
 ```
 
 ---
